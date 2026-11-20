@@ -3,23 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Whois</title>
+<title>Whois: who holds a domain or IP address</title>
 <meta name="description" content="Who holds a domain or an IP address, from the registries' own RDAP records. No ads, no tracking.">
-<style>
-:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5d5c57;--accent:#2f6b4f;--line:#e4e1d8}
-@media (prefers-color-scheme:dark){:root{--bg:#141513;--fg:#ecebe6;--muted:#a8a69e;--accent:#7fc3a0;--line:#2c2d29}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
-main{max-width:44rem;margin:0 auto;padding:10vh 1rem 4rem}
-.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem}
-.mark{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
-h1{font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:.4rem 0 1rem}
-p{color:var(--muted);margin:0 0 1rem}a{color:var(--accent)}
-footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
-.family{font-size:.8rem;border-bottom:1px solid rgba(127,127,127,.25);background:rgba(127,127,127,.06)}
-.family ul{list-style:none;margin:0 auto;padding:.35rem 1rem;display:flex;flex-wrap:wrap;gap:.25rem .9rem;max-width:72rem}
-.family a{color:inherit;opacity:.8;text-decoration:none}.family a:hover,.family a:focus-visible{opacity:1;text-decoration:underline}
-.family .family-sep{margin-left:auto}@media (max-width:40rem){.family .family-sep{margin-left:0}}
-</style>
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https:; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -27,7 +17,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
   <ul>
     <li><a href="https://sovereignwebsite.ai/">Sovereign Website</a></li>
     <li><a href="https://sovereignwebsite.org/">Principles</a></li>
-    <li><a href="https://sovereignwebsite.site/" aria-current="true">Hosted</a></li>
+    <li><a href="https://sovereignwebsite.site/">Hosted</a></li>
     <li><a href="https://hub.sovereignweb.site/">Hub</a></li>
     <li><a href="https://agents.sovereignweb.site/">Agents</a></li>
     <li><a href="https://vault.sovereignwebsite.site/">Vault</a></li>
@@ -36,12 +26,40 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
     <li><a href="https://newsroom.sgit.ai/">Newsroom</a></li>
   </ul>
 </nav>
-<main id="main">
-<div class="mark">whois.tool.sovereignweb.site</div>
+<main id="main" class="wrap">
+<p class="mark">whois.tool.sovereignweb.site</p>
 <h1>Whois</h1>
-<p>Who holds a domain or an IP address, from the registries' own RDAP records. No ads, no tracking.</p>
-<p>This site was made by one request to the Sovereign Website pipeline. Its files, its history and its address are in a repository its owner controls, and can move anywhere.</p>
-<footer>A sovereign website, made with the <a href="https://sovereignwebsite.org/">open pattern</a>. Source: <a href="https://github.com/SovereignWebsite/Site__whois">github.com/SovereignWebsite/Site__whois</a>.</footer>
+<p class="lede">Who holds a domain or an IP address, read straight from the registry's own records. No ads, no tracking, no account.</p>
+
+<form id="form" role="search" autocomplete="off">
+  <label for="q">Domain, IP address or AS number</label>
+  <div class="row">
+    <input id="q" name="q" type="text" inputmode="url" spellcheck="false" autocapitalize="off" placeholder="example.com, 8.8.8.8, 2001:db8::1 or AS15169" required>
+    <button type="submit">Look up</button>
+  </div>
+  <p class="hint">Try <a href="#q=example.com">example.com</a>, <a href="#q=1.1.1.1">1.1.1.1</a> or <a href="#q=AS3333">AS3333</a>.</p>
+</form>
+
+<div id="status" role="status" aria-live="polite"></div>
+<section id="result" hidden aria-labelledby="result-title">
+  <h2 id="result-title"></h2>
+  <p id="result-kind" class="kind"></p>
+  <dl id="summary" class="summary"></dl>
+  <div id="contacts"></div>
+  <details>
+    <summary>The full record</summary>
+    <p class="source">From <a id="source" rel="noreferrer"></a></p>
+    <pre id="raw" tabindex="0"></pre>
+  </details>
+</section>
+
+<section class="about" aria-labelledby="about-title">
+  <h2 id="about-title">How it works</h2>
+  <p>Your browser asks IANA which registry looks after the name or address, then asks that registry over RDAP, the modern replacement for whois. Nothing passes through this site: there is no server here, only these files. The registry sees your request, as it would with any whois tool.</p>
+  <p>Many registries hide personal details of people who hold a domain; you will see "redacted" or a privacy service. Some country registries do not offer RDAP, or do not allow browsers to ask; the page says so when that happens.</p>
+</section>
 </main>
+<footer class="site-footer"><div class="wrap"><p>A sovereign website, made with the <a href="https://sovereignwebsite.org/">open pattern</a>. Source: <a href="https://github.com/SovereignWebsite/Site__Tool__Whois">github.com/SovereignWebsite/Site__Tool__Whois</a>. Code Apache-2.0, text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. No cookies, no tracking.</p></div></footer>
+<script src="app.js"></script>
 </body>
 </html>
