@@ -96,3 +96,13 @@ summary { cursor: pointer; font-weight: 650; color: var(--accent); }
 pre#raw { max-height: 28rem; overflow: auto; background: var(--bg); border: 1px solid var(--line); border-radius: .6rem; padding: .8rem; font-size: .8rem; line-height: 1.5; }
 .about { margin-top: 2rem; }
 .notice { font-size: .9rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .8rem; }
+/* Family bar folded on phones (Factory fc21653): two copies in the markup, one shown per width. */
+.family .family-narrow{display:none}
+@media (max-width:40rem){
+  .family .family-wide{display:none}
+  .family .family-narrow{display:block}
+  .family summary{cursor:pointer;padding:.3rem 1rem;min-height:24px;color:var(--family-fg,currentColor)}
+  .family summary:hover,.family summary:focus-visible{color:var(--fg,currentColor);text-decoration:underline}
+  .family .family-narrow ul{flex-direction:column;gap:0;padding:0 1rem .4rem}
+  .family .family-sep{margin-left:0}
+}
