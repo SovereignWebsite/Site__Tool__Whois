@@ -212,5 +212,9 @@ async function run(raw) {
 }
 
 $('#form').addEventListener('submit', (e) => { e.preventDefault(); run($('#q').value); });
-function fromHash() { const q = new URLSearchParams(location.hash.slice(1)).get('q'); if (q) { $('#q').value = q; run(q); } }
+// A link such as #q=example.com fills the box; nothing is sent until the visitor presses Look up.
+function fromHash() {
+  const q = new URLSearchParams(location.hash.slice(1)).get('q');
+  if (q) { $('#q').value = q; $('#result').hidden = true; status('Press Look up to ask the registry about ' + q + '.'); $('#q').focus(); }
+}
 window.addEventListener('hashchange', fromHash); fromHash();

@@ -95,3 +95,4 @@ summary { cursor: pointer; font-weight: 650; color: var(--accent); }
 .source { font-size: .92rem; color: var(--muted); margin: .6rem 0; }
 pre#raw { max-height: 28rem; overflow: auto; background: var(--bg); border: 1px solid var(--line); border-radius: .6rem; padding: .8rem; font-size: .8rem; line-height: 1.5; }
 .about { margin-top: 2rem; }
+.notice { font-size: .9rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .8rem; }
