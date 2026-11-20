@@ -106,3 +106,8 @@ pre#raw { max-height: 28rem; overflow: auto; background: var(--bg); border: 1px 
   .family .family-narrow ul{flex-direction:column;gap:0;padding:0 1rem .4rem}
   .family .family-sep{margin-left:0}
 }
+
+/* About-this-site links in the footer, and prompts on the agents page. */
+.site-links { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin: 0 0 .7rem; }
+.site-links a { font-weight: 600; }
+main pre { background: var(--surface); border: 1px solid var(--line); border-radius: .6rem; padding: .8rem 1rem; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--fg); }

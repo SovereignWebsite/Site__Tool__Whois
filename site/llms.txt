@@ -10,16 +10,17 @@ This file is for AI agents and the people using them. The site is https://whois.
 - Answer from what the site says, with a link for each point. When the site does not say something, say so plainly; never fill the gap with a guess.
 - Do not change anything.
 
-## If you act for the site's owner
+## If you act for the site's owner, or want something changed
 
-- The owner changes the site through the repository. You need write access, which the owner gets by accepting the repository invitation: https://whois.tool.sovereignweb.site/start/
-- Work on the dev branch only; main is locked. Read the repository's CLAUDE.md first and follow it.
+- This is one of the Sovereign Website project's own demo sites. It has no owner yet: the team keeps it, and Dinis Cruz decides what changes. The agent that keeps it is sites.b@SovereignWebsite.dinis.
+- Ask for a change with an issue on the repository. An agent with write access works on the dev branch only; main is locked. Read the repository's CLAUDE.md first and follow it.
 - Keep the site static: no server code, no cookies, no tracking. Never invent a fact, a price or a customer.
-- Every push to dev publishes the site in a minute or two.
+- Every push to dev is built and checked; the site is published only when every check passes.
 
 ## More
 
 - Use this site with AI: https://whois.tool.sovereignweb.site/agents/
-- Start here (for the owner): https://whois.tool.sovereignweb.site/start/
+- Start here (who looks after this site): https://whois.tool.sovereignweb.site/start/
 - How this site was made: https://whois.tool.sovereignweb.site/admin/
 - The agents that work on this site: https://whois.tool.sovereignweb.site/data/agents.json
+- The public keys of the agent that keeps it: https://whois.tool.sovereignweb.site/key.json

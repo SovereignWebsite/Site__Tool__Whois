@@ -205,7 +205,7 @@ async function run(raw) {
     for (const [k, v] of rows) { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; dl.append(dt, dd); }
     const c = $('#contacts'); c.textContent = ''; const cards = contactCards(ents);
     if (cards.childNodes.length) { const h = document.createElement('h3'); h.className = 'sub'; h.textContent = 'Contacts'; c.append(h); const g = document.createElement('div'); g.className = 'cards'; g.append(cards); c.append(g); }
-    $('#source').href = res.url; $('#source').textContent = new URL(res.url).host;
+    $('#source').href = res.url; $('#source').rel = 'noreferrer'; $('#source').textContent = new URL(res.url).host;
     $('#raw').textContent = JSON.stringify(res.json, null, 2);
     $('#result').hidden = false; status('');
   } catch (e) { if (my === seq) status(e.message || 'Something went wrong.', true, e.link); }
